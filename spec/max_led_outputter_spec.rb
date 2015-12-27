@@ -5,16 +5,16 @@ require_relative '../lib/max_led_outputter'
 require_relative '../lib/max_led_calculator'
 
 describe MaxLEDOutputter do
-  describe '#process' do
+  describe '#puts' do
     it 'returns an empty string when given an empty string' do
       input = ''
-      output = MaxLEDOutputter.process(input)
+      output = MaxLEDOutputter.puts(input)
       expect(output).to be_empty
     end
 
     it 'returns one line when given one line' do
       input = '1'
-      output = MaxLEDOutputter.process(input)
+      output = MaxLEDOutputter.puts(input)
       expect(output).to eq '300'
     end
 
@@ -26,7 +26,7 @@ describe MaxLEDOutputter do
         12
       INPUT
 
-      output = MaxLEDOutputter.process(input)
+      output = MaxLEDOutputter.puts(input)
 
       expect(output).to eq <<-OUTPUT.strip_heredoc
         300

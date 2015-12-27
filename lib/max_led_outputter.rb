@@ -1,5 +1,5 @@
 class MaxLEDOutputter
-  def self.process(input)
+  def self.puts(input)
     return '' if input == ''
 
     hours = input.split("\n").map(&:to_i)
