@@ -1,7 +1,38 @@
+require 'active_support/core_ext/string'
 require_relative '../lib/xmas_lights'
 
 describe MaxLEDCalculator do
-  xdescribe '#process' do; end
+  describe '#process' do
+    it 'returns an empty string when given an empty string' do
+      input = ''
+      output = MaxLEDCalculator.process(input)
+      expect(output).to be_empty
+    end
+
+    it 'returns one line when given one line' do
+      input = '1'
+      output = MaxLEDCalculator.process(input)
+      expect(output).to eq '300'
+    end
+
+    it 'returns n lines when given n lines' do
+      input = <<-INPUT.strip_heredoc
+        1
+        4
+        8
+        12
+      INPUT
+
+      output = MaxLEDCalculator.process(input)
+
+      expect(output).to eq <<-OUTPUT.strip_heredoc
+        300
+        75
+        35
+        25
+      OUTPUT
+    end
+  end
 
   describe '#calculate([Fixnum])' do
     it 'returns the max number of LEDs based on the number of hours' do
