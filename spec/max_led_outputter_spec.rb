@@ -28,7 +28,6 @@ describe MaxLEDOutputter do
       end.to output(result).to_stdout
     end
 
-    # Simplify logic to increase fluency
     it 'outputs many line results when given line-separated input' do
       line_input = <<-INPUT.strip_heredoc
         1
