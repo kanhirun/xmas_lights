@@ -9,12 +9,12 @@ describe MaxLEDOutputter do
     allow(MaxLEDOutputter).to receive(:calculator) { collaborator }
   end
 
-  describe '#puts' do
+  describe '#print' do
     it "doesn't output when given an empty string" do
       empty_string = ''
 
       expect do
-        MaxLEDOutputter.puts(empty_string)
+        MaxLEDOutputter.print(empty_string)
       end.not_to output.to_stdout
     end
 
@@ -24,7 +24,7 @@ describe MaxLEDOutputter do
       expect(collaborator).to receive(:calculate).and_return(result)
 
       expect do
-        MaxLEDOutputter.puts(input)
+        MaxLEDOutputter.print(input)
       end.to output(result).to_stdout
     end
 
@@ -47,13 +47,13 @@ describe MaxLEDOutputter do
       )
 
       expect do
-        MaxLEDOutputter.puts(line_input)
+        MaxLEDOutputter.print(line_input)
       end.to output(line_results).to_stdout
     end
 
     it 'returns nil' do
       expect(collaborator).to receive(:calculate).and_return('10')
-      return_val = MaxLEDOutputter.puts('1')
+      return_val = MaxLEDOutputter.print('1')
       expect(return_val).to be_nil
     end
   end

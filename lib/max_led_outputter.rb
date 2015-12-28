@@ -1,7 +1,7 @@
 require 'active_support/core_ext/enumerable'
 
 class MaxLEDOutputter
-  def self.puts(input)
+  def self.print(input)
     return nil if input == ''
 
     data    = data(input)
