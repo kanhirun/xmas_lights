@@ -1,12 +1,12 @@
 require 'active_support/core_ext/string'
-require_relative '../lib/max_led_outputter'
+require_relative '../lib/calculator_printer'
 
 require_relative '../lib/max_led_calculator'
 
-describe MaxLEDOutputter do
-  let(:collaborator) { class_double(MaxLEDCalculator) }
+describe CalculatorPrinter do
+  let(:calculator) { class_double('Calculator') }
   before do
-    allow(MaxLEDOutputter).to receive(:calculator) { collaborator }
+    allow(CalculatorPrinter).to receive(:calculator){ calculator }
   end
 
   describe '#print' do
@@ -14,17 +14,17 @@ describe MaxLEDOutputter do
       empty_string = ''
 
       expect do
-        MaxLEDOutputter.print(empty_string)
+        CalculatorPrinter.print(empty_string)
       end.not_to output.to_stdout
     end
 
     it 'outputs the result when given an input' do
       input  = '1'
       result = '10'
-      expect(collaborator).to receive(:calculate).and_return(result)
+      expect(calculator).to receive(:calculate).and_return(result)
 
       expect do
-        MaxLEDOutputter.print(input)
+        CalculatorPrinter.print(input)
       end.to output(result).to_stdout
     end
 
@@ -41,17 +41,17 @@ describe MaxLEDOutputter do
         30
         40
       OUTPUT
-      expect(collaborator).to receive(:calculate).and_return('10', '20', '30', '40')
+      expect(calculator).to receive(:calculate).and_return('10', '20', '30', '40')
 
       expect do
-        MaxLEDOutputter.print(line_input)
+        CalculatorPrinter.print(line_input)
       end.to output(line_results).to_stdout
     end
 
     # TODO: Silence this output so that it doesn't mess up the test output
     it 'returns nil' do
-      expect(collaborator).to receive(:calculate).and_return('10')
-      return_val = MaxLEDOutputter.print('1')
+      expect(calculator).to receive(:calculate).and_return('10')
+      return_val = CalculatorPrinter.print('1')
       expect(return_val).to be_nil
     end
   end

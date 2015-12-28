@@ -1,6 +1,6 @@
 require 'active_support/core_ext/enumerable'
 
-class MaxLEDOutputter
+class CalculatorPrinter
   def self.print(input)
     return nil if input == ''
 
