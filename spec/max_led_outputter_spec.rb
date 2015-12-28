@@ -4,44 +4,51 @@ require_relative '../lib/max_led_outputter'
 require_relative '../lib/max_led_calculator'
 
 describe MaxLEDOutputter do
-  let(:calculator) { class_double(MaxLEDCalculator) }
+  let(:collaborator) { class_double(MaxLEDCalculator) }
   before do
-    allow(MaxLEDOutputter).to receive(:calculator) { calculator }
+    allow(MaxLEDOutputter).to receive(:calculator) { collaborator }
   end
 
   describe '#puts' do
-    it 'returns an empty string when given an empty string' do
-      input = ''
-      output = MaxLEDOutputter.puts(input)
-      expect(output).to be_empty
+    it "doesn't output when given an empty string" do
+      empty_string = ''
+
+      expect do
+        MaxLEDOutputter.puts(empty_string)
+      end.not_to output.to_stdout
     end
 
-    it 'returns one line when given one line' do
-      expect(calculator).to receive(:calculate).and_return('300')
-      input = '1'
+    it 'outputs the result when given an input' do
+      input  = '1'
+      result = '300'
+      expect(collaborator).to receive(:calculate).and_return(result)
 
-      output = MaxLEDOutputter.puts(input)
-
-      expect(output).to eq '300'
+      expect do
+        MaxLEDOutputter.puts(input)
+      end.to output(result).to_stdout
     end
 
-    it 'returns n lines when given n lines' do
-      expect(calculator).to receive(:calculate).and_return('300', '75', '35', '25')
-      input = <<-INPUT.strip_heredoc
+    # Simplify logic to increase fluency
+    it 'outputs many line results when given line-separated input' do
+      line_input = <<-INPUT.strip_heredoc
         1
         4
         8
         12
       INPUT
-
-      output = MaxLEDOutputter.puts(input)
-
-      expect(output).to eq <<-OUTPUT.strip_heredoc
+      line_results = <<-OUTPUT.strip_heredoc
         300
         75
         35
         25
       OUTPUT
+      expect(collaborator).to receive(:calculate).and_return(
+        '300', '75', '35', '25'
+      )
+
+      expect do
+        MaxLEDOutputter.puts(line_input)
+      end.to output(line_results).to_stdout
     end
   end
 end

@@ -2,14 +2,14 @@ require 'active_support/core_ext/enumerable'
 
 class MaxLEDOutputter
   def self.puts(input)
-    return '' if input == ''
+    return nil if input == ''
 
     data    = data(input)
     results = data.map do |d|
       calculator.calculate(d)
     end
 
-    lines(results)
+    $stdout.print lines(results)
   end
 
   private
