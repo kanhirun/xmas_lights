@@ -52,5 +52,22 @@ describe CalculatorPrinter do
       return_val = CalculatorPrinter.print('1')
       expect(return_val).to be_nil
     end
+
+    xdescribe '#print_circuit_of_max_LEDS' do
+      it 'prints the circuit' do
+        input = '20'
+        results = <<-RESULTS
+         *--|>|---|>|---|>|---|>|---|>|--*
+          |                             |
+          --|>|---|>|---|>|---|>|---|>|--
+          |                             |
+          --|>|---|>|---|>|---|>|---|>|--
+        RESULTS
+
+        expect do
+          CalculatorPrinter.print_circuit_of_max_LEDS(input)
+        end.to output(results).to_stdout
+      end
+    end
   end
 end
