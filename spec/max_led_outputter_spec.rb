@@ -50,5 +50,11 @@ describe MaxLEDOutputter do
         MaxLEDOutputter.puts(line_input)
       end.to output(line_results).to_stdout
     end
+
+    it 'returns nil' do
+      expect(collaborator).to receive(:calculate).and_return('10')
+      return_val = MaxLEDOutputter.puts('1')
+      expect(return_val).to be_nil
+    end
   end
 end
