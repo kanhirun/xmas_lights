@@ -1,8 +1,6 @@
 require 'active_support/core_ext/string'
 require_relative '../lib/calculator_printer'
 
-require_relative '../lib/max_led_calculator'
-
 describe CalculatorPrinter do
   let(:calculator) { class_double('Calculator') }
   before do
