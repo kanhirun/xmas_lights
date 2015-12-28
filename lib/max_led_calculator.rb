@@ -8,7 +8,7 @@ class MaxLEDCalculator
   end
 
   def self.max_number_of_LEDS_in_parallel(hours)
-    battery_capacity / hours / led_current
+    battery_capacity / hours / LED.current
   end
 
   def self.max_number_of_LEDS_in_series
@@ -20,7 +20,9 @@ class MaxLEDCalculator
       1200  # in mA / hr
     end
 
-    def self.led_current
-      20  # in mA
+    class LED
+      def self.current
+        20  # in mA
+      end
     end
 end
