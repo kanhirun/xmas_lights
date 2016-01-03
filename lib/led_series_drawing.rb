@@ -1,4 +1,4 @@
-class LEDSeries
+class LEDSeriesDrawing
   def initialize(n)
     @leds = Array.new(n){ led }
   end

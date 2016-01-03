@@ -1,11 +1,11 @@
-require_relative 'led_series'
+require_relative 'led_series_drawing'
 
-class LEDParallel
+class LEDCircuitDrawing
   def initialize(ncol:, nrow:)
     @num    = ncol
     @series = nrow
     @leds = Array.new(ncol) do
-      LEDSeries.new(nrow)
+      LEDSeriesDrawing.new(nrow)
     end
   end
 

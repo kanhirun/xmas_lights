@@ -1,17 +1,18 @@
 require 'active_support/core_ext/string'
-require_relative '../lib/led_parallel'
 
-describe LEDParallel do
+require_relative '../lib/led_circuit_drawing'
+
+describe LEDCircuitDrawing do
   describe '#to_s' do
     it 'returns the identity when n = 1' do
       expected = '--|>|--'
-      parallel = LEDParallel.new(nrow: 1, ncol: 1)
+      parallel = LEDCircuitDrawing.new(nrow: 1, ncol: 1)
       expect(parallel.to_s).to eq expected
     end
 
     it 'returns the identity when n = 1' do
       expected = '--|>|--|>|--'
-      parallel = LEDParallel.new(nrow: 2, ncol: 1)
+      parallel = LEDCircuitDrawing.new(nrow: 2, ncol: 1)
       expect(parallel.to_s).to eq expected
     end
 
@@ -22,7 +23,7 @@ describe LEDParallel do
         --|>|--|>|--
       EXPECTED
 
-      parallel = LEDParallel.new(nrow: 2, ncol: 2)
+      parallel = LEDCircuitDrawing.new(nrow: 2, ncol: 2)
 
       expect(parallel.to_s).to eq expected
     end
@@ -34,7 +35,7 @@ describe LEDParallel do
         --|>|--|>|--|>|--
       EXPECTED
 
-      parallel = LEDParallel.new(nrow: 3, ncol: 2)
+      parallel = LEDCircuitDrawing.new(nrow: 3, ncol: 2)
 
       expect(parallel.to_s).to eq expected
     end

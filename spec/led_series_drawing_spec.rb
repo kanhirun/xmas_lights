@@ -1,16 +1,16 @@
-require_relative '../lib/led_series'
+require_relative '../lib/led_series_drawing'
 
-describe LEDSeries do
+describe LEDSeriesDrawing do
   describe '#to_s' do
     it 'returns a single LED' do
-      led = LEDSeries.new(1)
+      led = LEDSeriesDrawing.new(1)
       expected = '--|>|--'
 
       expect(led.to_s).to eq expected
     end
 
     it 'returns two LEDs' do
-      led = LEDSeries.new(2)
+      led = LEDSeriesDrawing.new(2)
       expected = '--|>|--|>|--'
 
       expect(led.to_s).to eq expected
