@@ -1,7 +1,7 @@
 require_relative '../lib/max_led_calculator'
 
 describe MaxLEDCalculator do
-  describe '#calculate([Fixnum])' do
+  describe '#calculate( Fixnum )' do
     it 'returns the max number of LEDs based on the number of hours' do
       num_of_LEDS = MaxLEDCalculator.calculate(1)
       expect(num_of_LEDS).to be 300
