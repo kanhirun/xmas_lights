@@ -1,6 +1,9 @@
 require 'active_support/core_ext/string'
 require 'active_support/core_ext/enumerable'
 
+require_relative 'max_led_calculator'
+require_relative 'led_circuit_drawing'
+
 class CalculatorPrinter
   def self.print_number_format(input)
     return nil if input == ''
